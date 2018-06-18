@@ -49,7 +49,7 @@ rp(options)
 .then((result) => {
   result.data.children.forEach(entry => {
     console.log(`Title:\t${entry.data.title}\nUrl:\t${entry.data.url}\nAuthor:\t${entry.data.author}\n`);
-    fs.appendFileSync(path.join(__dirname, "../popular-articles.json.json"), JSON.stringify(entry), err => {
+    fs.appendFileSync(path.join(__dirname, "../popular-articles.json"), JSON.stringify(entry), err => {
       if (err) console.log(err);
     });
   })
