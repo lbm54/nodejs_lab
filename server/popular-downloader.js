@@ -12,9 +12,10 @@ rp(options)
 .then((result) => {
     result.data.children.forEach((child) => {
         if (child.data.is_video) {
-            console.log(child.data.media.reddit_video.dash_url);
-           request(child.data.media.reddit_video.dash_url)
-           .pipe(fs.createWriteStream(path.join(__dirname, `../downloads/${child.data.title}`)));
+            let url = child.data.media.reddit_video.fallback_url;
+            let videoName = url.split('/').pop();
+           request(url)
+           .pipe(fs.createWriteStream(path.join(__dirname, `../downloads/${videoName}`)));
         }
     })
     // fs.writeFile(path.join(__dirname, "what.json"), JSON.stringify(result));
